@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <h1>All Public Entries</h1>
+
+<% entries.forEach(entry => { %>
+
+  <div>
+    <h2><%= entry.title %></h2>
+
+    <p><%= entry.entryBody %></p>
+
+    <% if (user && entry.owner.toString() === user._id.toString()) { %>
+
+      <a href="/entries/edit/<%= entry._id %>">
+        <button>Edit</button>
+      </a>
+
+      <form
+        action="/entries/delete/<%= entry._id %>"
+        method="POST"
+      >
+        <button type="submit">Delete</button>
+      </form>
+
+    <% } %>
+
+    <hr>
+  </div>
+
+<% }) %>
+</body>
+</html>
